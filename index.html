@@ -3,327 +3,156 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DRUMS FM // Pixel Station</title>
+    <title>DRUMS FM TV</title>
     <meta
       name="description"
-      content="Retro game-style CRT beats station with menu screens, beat listings, stash kit signup, and repository-linked audio shortcuts."
+      content="Simple retro TV-style beat station with inline beat playback, FM playlist controls, animated buttons, and mouse-reactive screen movement."
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="background-scene" aria-hidden="true">
-      <div class="background-vignette"></div>
-      <div class="background-stars"></div>
-      <div class="background-fog background-fog--one"></div>
-      <div class="background-fog background-fog--two"></div>
-      <div class="background-mountains background-mountains--back"></div>
-      <div class="background-mountains background-mountains--front"></div>
-      <div class="background-objects">
-        <div class="camp camp--left">
-          <span class="camp-fire"></span>
-          <span class="camp-seat"></span>
-        </div>
-        <div class="camp camp--right">
-          <span class="camp-pack"></span>
-          <span class="camp-note"></span>
-        </div>
+    <div class="scene" aria-hidden="true">
+      <div class="scene__overlay"></div>
+      <div class="scene__stars"></div>
+      <div class="scene__fog"></div>
+      <div class="scene__mountains scene__mountains--back"></div>
+      <div class="scene__mountains scene__mountains--front"></div>
+      <div class="scene__objects">
+        <span class="scene__fire"></span>
+        <span class="scene__crate scene__crate--left"></span>
+        <span class="scene__crate scene__crate--right"></span>
       </div>
-      <div class="screen-noise"></div>
+      <div class="scene__noise"></div>
     </div>
 
-    <div class="app-shell">
-      <header class="hud">
-        <div class="hud-group hud-group--left">
-          <button class="hud-button" id="menuToggle" type="button">
-            <span class="hud-button__led"></span>
-            <span>Menu</span>
-          </button>
-        </div>
+    <div class="app">
+      <header class="topbar">
+        <button class="topbar__menu ui-button" id="menuToggle" type="button">
+          <span class="ui-button__dot"></span>
+          <span>Menu</span>
+        </button>
 
-        <div class="hud-group hud-group--center">
-          <div class="station-brand">
-            <span class="station-disc"></span>
-            <span class="station-brand__text">Cxdy FM</span>
+        <div class="topbar__center">
+          <div class="station-title">
+            <span class="station-title__disc"></span>
+            <span>Cxdy FM</span>
           </div>
 
-          <div class="transport-cluster" aria-label="transport controls">
-            <button class="transport-button" id="prevBtn" type="button" aria-label="Previous track">|◁</button>
-            <button class="transport-button transport-button--play" id="playBtn" type="button" aria-label="Open beats screen">▷</button>
-            <button class="transport-button" id="nextBtn" type="button" aria-label="Next track">▷|</button>
+          <div class="fm-controls">
+            <button class="ui-icon" id="prevBtn" type="button" aria-label="Previous FM track">|◁</button>
+            <button class="ui-icon ui-icon--play" id="playBtn" type="button" aria-label="Play or pause FM">▷</button>
+            <button class="ui-icon" id="nextBtn" type="button" aria-label="Next FM track">▷|</button>
           </div>
 
-          <div class="track-pill" id="trackIndicator">• Track #1</div>
+          <div class="topbar__track" id="trackIndicator">• Track #1</div>
         </div>
 
-        <div class="hud-group hud-group--right">
-          <img class="site-logo" src="image.png" alt="DRUMS FM logo" />
-        </div>
+        <img class="topbar__logo" src="image.png" alt="DRUMS FM logo" />
       </header>
 
-      <main class="playfield">
-        <aside class="side-panel side-panel--left">
-          <section class="status-card">
-            <p class="status-card__label">Station mode</p>
-            <h2>Pixel Broadcast</h2>
-            <p class="status-card__copy">
-              A darker, game-like remix of the reference style with retro HUD elements, a huge CRT monitor, and menu-driven beat browsing.
-            </p>
-          </section>
+      <main class="tv-stage">
+        <section class="television" id="monitorShell">
+          <div class="television__frame">
+            <div class="television__inner">
+              <div class="television__screen" id="monitorScreen">
+                <div class="television__scanlines"></div>
+                <div class="television__glare"></div>
+                <div class="television__cursor" id="cursorGlow"></div>
 
-          <section class="data-card">
-            <div class="data-card__header">
-              <span>Signal</span>
-              <span id="signalPercent">94%</span>
-            </div>
-            <div class="meter"><span id="signalBar"></span></div>
-            <ul class="stat-list">
-              <li><span>Active pack</span><strong id="activePackName">Night Vision</strong></li>
-              <li><span>Beat links</span><strong id="beatCount">03</strong></li>
-              <li><span>View</span><strong id="screenName">Menu</strong></li>
-            </ul>
-          </section>
+                <section class="view view--active" id="screenMenu">
+                  <div class="view__header">
+                    <p class="view__label">Menu</p>
+                    <h1>Select a kit</h1>
+                  </div>
+                  <div class="kit-menu" id="kitList"></div>
+                </section>
 
-          <section class="data-card">
-            <div class="data-card__header">
-              <span>Quick notes</span>
-              <span>SYS</span>
-            </div>
-            <ul class="note-list">
-              <li>Use the center screen like a game menu.</li>
-              <li>Every beat button opens a file path from the <code>beats/</code> folder.</li>
-              <li>The lower deck opens the stash-kit signup view.</li>
-            </ul>
-          </section>
-        </aside>
-
-        <section class="console-area">
-          <div class="console-top-glow"></div>
-
-          <div class="monitor-shell">
-            <div class="monitor-frame">
-              <div class="monitor-bezel">
-                <div class="monitor-screen">
-                  <div class="monitor-scanlines"></div>
-                  <div class="monitor-glass"></div>
-                  <div class="monitor-grid"></div>
-
-                  <section class="screen-view screen-view--active" id="screenMenu">
-                    <div class="screen-header">
-                      <p class="screen-kicker">Main menu</p>
-                      <h1>Choose a Kit</h1>
-                      <p class="screen-subtitle">
-                        Pick a world, then open a sub-menu full of beat links stored in your repository.
-                      </p>
-                    </div>
-
-                    <div class="menu-columns">
-                      <div class="menu-primary" id="kitList"></div>
-
-                      <div class="menu-secondary">
-                        <article class="preview-card">
-                          <p class="preview-card__label">Selected kit</p>
-                          <h2 id="previewTitle">Night Vision</h2>
-                          <p id="previewDescription">
-                            Shadowy melodies, dark atmosphere, and wide-space drum textures for moody sessions.
-                          </p>
-                          <ul class="preview-meta">
-                            <li><span>Theme</span><strong id="previewTheme">Noir synth haze</strong></li>
-                            <li><span>Tempo</span><strong id="previewTempo">142 BPM</strong></li>
-                            <li><span>Mood</span><strong id="previewMood">Cold / cinematic</strong></li>
-                          </ul>
-                        </article>
-
-                        <article class="mini-map">
-                          <p class="mini-map__label">Station sectors</p>
-                          <div class="mini-map__grid">
-                            <span class="mini-map__cell mini-map__cell--active"></span>
-                            <span class="mini-map__cell"></span>
-                            <span class="mini-map__cell"></span>
-                            <span class="mini-map__cell"></span>
-                            <span class="mini-map__cell"></span>
-                            <span class="mini-map__cell"></span>
-                            <span class="mini-map__cell"></span>
-                            <span class="mini-map__cell mini-map__cell--warning"></span>
-                            <span class="mini-map__cell"></span>
-                          </div>
-                        </article>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section class="screen-view" id="screenBeats">
-                    <div class="screen-header">
-                      <p class="screen-kicker" id="beatsKicker">Beat menu</p>
+                <section class="view" id="screenBeats">
+                  <div class="view__header view__header--beats">
+                    <div>
+                      <p class="view__label" id="beatsKicker">Beat Menu</p>
                       <h1 id="beatsTitle">Night Vision Beats</h1>
-                      <p class="screen-subtitle" id="beatsDescription">
-                        Open a beat in a new tab. Replace the example file names in <code>script.js</code> with the real audio files you put into <code>beats/</code>.
-                      </p>
                     </div>
+                    <button class="sub-button" id="backToMenu" type="button">← Back</button>
+                  </div>
 
-                    <div class="beats-layout">
-                      <div class="beats-actions">
-                        <button class="subtle-button" id="backToMenu" type="button">← Back to menu</button>
-                        <button class="subtle-button" id="openSignupFromBeats" type="button">Open stash kit</button>
+                  <div class="beat-layout">
+                    <div class="beat-list" id="beatsList"></div>
+
+                    <aside class="player-card">
+                      <p class="player-card__label">Beat player</p>
+                      <h2 id="beatNowPlaying">Night Vision Beat 01</h2>
+                      <p class="player-card__copy" id="beatsDescription">
+                        Load a beat here and listen inside the TV instead of opening the file directly.
+                      </p>
+                      <code class="player-card__path" id="pathDisplay">beats/night-vision-01.mp3</code>
+                      <p class="player-card__hint" id="currentBeatHint">Choose a beat, then press play.</p>
+
+                      <div class="player-actions">
+                        <button class="player-button player-button--ghost" id="beatPrevBtn" type="button">|◁</button>
+                        <button class="player-button player-button--play" id="beatPlayBtn" type="button">Play Beat</button>
+                        <button class="player-button player-button--ghost" id="beatNextBtn" type="button">▷|</button>
                       </div>
 
-                      <div class="beats-browser">
-                        <div class="beats-browser__list" id="beatsList"></div>
-
-                        <aside class="beats-browser__sidebar">
-                          <div class="terminal-card">
-                            <p class="terminal-card__label">Repository path</p>
-                            <code id="pathDisplay">beats/night-vision-01.mp3</code>
-                          </div>
-
-                          <div class="terminal-card">
-                            <p class="terminal-card__label">Instructions</p>
-                            <ul class="terminal-list">
-                              <li>Add your real files into the <code>beats/</code> folder.</li>
-                              <li>Change the URLs in <code>script.js</code> if the names differ.</li>
-                              <li>Each beat button opens as a direct file link.</li>
-                            </ul>
-                          </div>
-                        </aside>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section class="screen-view" id="screenSignup">
-                    <div class="screen-header screen-header--centered">
-                      <p class="screen-kicker">Free stash kit</p>
-                      <h1>Grab My NEW 2025 Free Stash Kit</h1>
-                      <p class="screen-subtitle">
-                        This screen matches the lower-deck style from your screenshot more closely, but keeps it inside the same retro station UI.
-                      </p>
-                    </div>
-
-                    <div class="signup-panel">
-                      <div class="signup-panel__copy">
-                        <div class="chip-row">
-                          <span class="chip">Free drop</span>
-                          <span class="chip">Instant access</span>
-                          <span class="chip">Producer tools</span>
+                      <div class="player-progress">
+                        <div class="player-progress__bar"><span id="beatProgressBar"></span></div>
+                        <div class="player-progress__meta">
+                          <span id="beatTimeCurrent">0:00</span>
+                          <span id="beatTimeDuration">0:00</span>
                         </div>
-                        <p>
-                          Enter your info below to simulate the signup view. You can connect this form to your real backend or mailing list later.
-                        </p>
                       </div>
+                    </aside>
+                  </div>
+                </section>
 
-                      <form class="stash-form">
-                        <label>
-                          <span>First Name</span>
-                          <input type="text" placeholder="First Name" />
-                        </label>
-                        <label>
-                          <span>Email Address</span>
-                          <input type="email" placeholder="Email Address" />
-                        </label>
-                        <button type="submit">Get Sounds</button>
-                      </form>
-                    </div>
-                  </section>
+                <section class="view" id="screenSignup">
+                  <div class="view__header view__header--centered">
+                    <p class="view__label">Free stash kit</p>
+                    <h1>Grab My NEW 2025 Free Stash Kit</h1>
+                  </div>
 
-                  <section class="screen-view" id="screenLore">
-                    <div class="screen-header">
-                      <p class="screen-kicker">Lore / notes</p>
-                      <h1>Station Details</h1>
-                      <p class="screen-subtitle">
-                        Extra worldbuilding so the page feels bigger, more game-like, and less like a thin static mockup.
-                      </p>
-                    </div>
-
-                    <div class="lore-grid">
-                      <article class="lore-card">
-                        <h2>Broadcast rules</h2>
-                        <p>Every kit acts like a stage. Click one, then jump into the beat list tied to files inside your GitHub repo.</p>
-                      </article>
-                      <article class="lore-card">
-                        <h2>CRT styling</h2>
-                        <p>The scene uses local CSS effects instead of fragile external assets, so it loads more reliably.</p>
-                      </article>
-                      <article class="lore-card">
-                        <h2>More space</h2>
-                        <p>The UI now has side panels, richer screen states, larger monitor proportions, and stronger HUD framing.</p>
-                      </article>
-                      <article class="lore-card">
-                        <h2>Easy editing</h2>
-                        <p>All kit and beat data still lives in one JS file, so it stays simple to maintain.</p>
-                      </article>
-                    </div>
-                  </section>
-                </div>
+                  <div class="signup-card">
+                    <p class="signup-card__text">
+                      Keep this simple like the screenshot: a clean form inside the TV, with the rest of the page staying dark and gamey.
+                    </p>
+                    <form class="signup-form">
+                      <input type="text" placeholder="First Name" />
+                      <input type="email" placeholder="Email Address" />
+                      <button type="submit">Get Sounds</button>
+                    </form>
+                  </div>
+                </section>
               </div>
             </div>
           </div>
 
-          <div class="deck-panel">
-            <button class="deck-button" id="baseButton" type="button">
-              <span class="deck-button__main">Open Free Stash Kit</span>
-              <span class="deck-button__sub">Lower deck access terminal</span>
-            </button>
-
-            <div class="deck-shortcuts">
-              <button class="deck-shortcut" id="showLore" type="button">Lore</button>
-              <button class="deck-shortcut" id="showMenuBottom" type="button">Menu</button>
-              <button class="deck-shortcut" id="showBeatsBottom" type="button">Beats</button>
+          <div class="tv-base">
+            <button class="tv-base__button" id="baseButton" type="button">Open Free Stash Kit</button>
+            <div class="tv-base__meta">
+              <span id="activePackName">Night Vision</span>
+              <span id="fmTrackTitle">FM Track 1</span>
+              <span id="fmState">Idle</span>
             </div>
           </div>
         </section>
-
-        <aside class="side-panel side-panel--right">
-          <section class="data-card data-card--quest">
-            <div class="data-card__header">
-              <span>Mission log</span>
-              <span>LIVE</span>
-            </div>
-            <ol class="quest-list">
-              <li>Open a kit from the main monitor menu.</li>
-              <li>Jump to the beats sub-menu.</li>
-              <li>Launch a file from the repository beats folder.</li>
-              <li>Return and open the stash-kit signup deck.</li>
-            </ol>
-          </section>
-
-          <section class="data-card">
-            <div class="data-card__header">
-              <span>Current beat</span>
-              <span id="beatBadge">01</span>
-            </div>
-            <h2 class="data-card__title" id="currentBeatTitle">Night Vision Beat 01</h2>
-            <p class="data-card__copy" id="currentBeatHint">
-              Clicking a beat opens its file directly, so once your real audio is in the repo the buttons become real launch links.
-            </p>
-          </section>
-
-          <section class="data-card">
-            <div class="data-card__header">
-              <span>System checks</span>
-              <span>OK</span>
-            </div>
-            <div class="check-grid">
-              <div class="check-pill">CRT Ready</div>
-              <div class="check-pill">Menu Linked</div>
-              <div class="check-pill">Repo Paths</div>
-              <div class="check-pill">Signup View</div>
-            </div>
-          </section>
-        </aside>
       </main>
     </div>
 
     <template id="kitButtonTemplate">
-      <button class="menu-option" type="button">
-        <span class="menu-option__title"></span>
-        <span class="menu-option__meta"></span>
+      <button class="kit-button" type="button">
+        <span class="kit-button__title"></span>
       </button>
     </template>
 
     <template id="beatButtonTemplate">
-      <a class="beat-option" target="_blank" rel="noopener noreferrer">
-        <span class="beat-option__name"></span>
-        <span class="beat-option__path"></span>
-      </a>
+      <button class="beat-button" type="button">
+        <span class="beat-button__title"></span>
+        <span class="beat-button__path"></span>
+      </button>
     </template>
+
+    <audio id="beatAudio" preload="none"></audio>
+    <audio id="fmAudio" preload="none"></audio>
 
     <script src="script.js"></script>
   </body>
