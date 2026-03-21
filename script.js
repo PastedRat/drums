@@ -92,7 +92,7 @@ const fmState = document.getElementById('fmState');
 
 const beatAudio = document.getElementById('beatAudio');
 const fmAudio = document.getElementById('fmAudio');
-const ambientAudio = document.getElementById('ambientAudio');
+const backgroundVideo = document.getElementById('backgroundVideo');
 fmAudio.volume = 0.9;
 
 let activeScreen = 'menu';
@@ -103,23 +103,17 @@ let beatButtons = [];
 let kitButtons = [];
 
 
-function setupAmbientTrack() {
-  ambientAudio.src = 'video.mp4';
-  ambientAudio.volume = 0.28;
+function setupBackgroundVideo() {
+  if (!backgroundVideo) return;
 
-  const tryPlayAmbient = () => {
-    ambientAudio.play().then(() => {
-      document.body.classList.add('ambient-on');
-    }).catch(() => {
-      document.body.classList.remove('ambient-on');
-    });
-  };
+  const markPlaying = () => document.body.classList.add('video-on');
+  const markFallback = () => document.body.classList.remove('video-on');
 
-  tryPlayAmbient();
-
-  ['click', 'keydown', 'touchstart'].forEach((eventName) => {
-    window.addEventListener(eventName, tryPlayAmbient, { once: true });
-  });
+  backgroundVideo.muted = true;
+  backgroundVideo.defaultMuted = true;
+  backgroundVideo.play().then(markPlaying).catch(markFallback);
+  backgroundVideo.addEventListener('playing', markPlaying);
+  backgroundVideo.addEventListener('error', markFallback);
 }
 
 function formatTime(value) {
@@ -428,6 +422,6 @@ monitorScreen.addEventListener('mouseleave', () => {
 renderKits();
 renderBeats();
 loadBeat(0, false);
-setupAmbientTrack();
+setupBackgroundVideo();
 loadFmTrack(0, false);
 showScreen(activeScreen);
