@@ -1,6 +1,6 @@
 const kits = [
   {
-    name: 'Night Vision',
+    name: 'Night Visio',
     track: '#1',
     beats: [
       { label: 'Night Vision Beat 01', href: 'beats/night-vision-01.mp3' },
