@@ -67,7 +67,7 @@ body {
 .menu-item,
 .beat-link,
 .signup-form button {
-  font-family: 'Press Start to play', monospace;
+  font-family: 'Press Start 2P', monospace;
 }
 
 .ui-button {
@@ -128,12 +128,9 @@ body {
 
 .corner-logo {
   justify-self: end;
-  padding: 8px 14px;
-  border: 2px solid rgba(255, 83, 163, 0.55);
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255, 83, 163, 0.22), rgba(255, 219, 93, 0.12));
-  color: #ffd1ec;
-  transform: rotate(-5deg);
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 0 12px rgba(255, 92, 201, 0.28));
 }
 
 .stage {
