@@ -104,7 +104,7 @@ let kitButtons = [];
 
 
 function setupAmbientTrack() {
-  ambientAudio.src = 'video.mp3';
+  ambientAudio.src = 'video.mp4';
   ambientAudio.volume = 0.28;
 
   const tryPlayAmbient = () => {
