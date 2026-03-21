@@ -62,7 +62,7 @@ code {
   z-index: 0;
   background:
     radial-gradient(circle at 50% 20%, rgba(173, 197, 214, 0.08), transparent 20%),
-    linear-gradient(180deg, #11151b 0%, #090c10 35%, #050608 100%);
+    linear-gradient(180deg, #11151b 0%, #090c10 35%, #050609 100%);
 }
 
 .background-vignette {
