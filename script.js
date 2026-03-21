@@ -93,6 +93,7 @@ const fmState = document.getElementById('fmState');
 const beatAudio = document.getElementById('beatAudio');
 const fmAudio = document.getElementById('fmAudio');
 const ambientAudio = document.getElementById('ambientAudio');
+fmAudio.volume = 0.9;
 
 let activeScreen = 'menu';
 let activeKitIndex = 0;
@@ -263,12 +264,13 @@ function loadFmTrack(index, autoplay = false) {
   trackIndicator.textContent = `• ${track.title}`;
 
   if (autoplay) {
+    fmState.textContent = 'Loading';
     fmAudio.play().then(() => {
       playBtn.textContent = '❚❚';
       fmState.textContent = 'Playing';
     }).catch(() => {
       playBtn.textContent = '▷';
-      fmState.textContent = 'Idle';
+      fmState.textContent = 'Tap Play';
     });
   }
 }
@@ -378,11 +380,25 @@ beatAudio.addEventListener('ended', () => {
 fmAudio.addEventListener('play', () => {
   playBtn.textContent = '❚❚';
   fmState.textContent = 'Playing';
+  document.body.classList.add('fm-active');
 });
 
 fmAudio.addEventListener('pause', () => {
   playBtn.textContent = '▷';
   fmState.textContent = 'Paused';
+  document.body.classList.remove('fm-active');
+});
+
+fmAudio.addEventListener('loadeddata', () => {
+  if (fmAudio.paused) {
+    fmState.textContent = 'Ready';
+  }
+});
+
+fmAudio.addEventListener('error', () => {
+  fmState.textContent = 'Missing FM file';
+  playBtn.textContent = '▷';
+  document.body.classList.remove('fm-active');
 });
 
 fmAudio.addEventListener('ended', () => {
