@@ -78,6 +78,7 @@ button,
 
 .scene__overlay {
   background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.54) 100%);
+  backdrop-filter: blur(2px);
 }
 
 .scene__stars {
@@ -690,4 +691,14 @@ button,
     align-items: center;
     text-align: center;
   }
+}
+
+
+body.ambient-on .scene__fog {
+  filter: blur(10px);
+  opacity: 0.92;
+}
+
+body.ambient-on .television__screen {
+  box-shadow: inset 0 0 52px rgba(0,0,0,0.92), 0 0 30px rgba(138, 228, 255, 0.08);
 }
