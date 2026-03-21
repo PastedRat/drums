@@ -92,6 +92,7 @@ const fmState = document.getElementById('fmState');
 
 const beatAudio = document.getElementById('beatAudio');
 const fmAudio = document.getElementById('fmAudio');
+const ambientAudio = document.getElementById('ambientAudio');
 
 let activeScreen = 'menu';
 let activeKitIndex = 0;
@@ -99,6 +100,26 @@ let activeBeatIndex = 0;
 let activeFmIndex = 0;
 let beatButtons = [];
 let kitButtons = [];
+
+
+function setupAmbientTrack() {
+  ambientAudio.src = 'video.mp3';
+  ambientAudio.volume = 0.28;
+
+  const tryPlayAmbient = () => {
+    ambientAudio.play().then(() => {
+      document.body.classList.add('ambient-on');
+    }).catch(() => {
+      document.body.classList.remove('ambient-on');
+    });
+  };
+
+  tryPlayAmbient();
+
+  ['click', 'keydown', 'touchstart'].forEach((eventName) => {
+    window.addEventListener(eventName, tryPlayAmbient, { once: true });
+  });
+}
 
 function formatTime(value) {
   if (!Number.isFinite(value)) return '0:00';
@@ -391,5 +412,6 @@ monitorScreen.addEventListener('mouseleave', () => {
 renderKits();
 renderBeats();
 loadBeat(0, false);
+setupAmbientTrack();
 loadFmTrack(0, false);
 showScreen(activeScreen);
