@@ -1,106 +1,79 @@
 const kits = [
   {
-    id: 'night-vision',
     name: 'Night Vision',
     track: '#1',
-    theme: 'Noir synth haze',
-    tempo: '142 BPM',
-    mood: 'Cold / cinematic',
-    signal: 94,
-    description: 'Shadowy melodies, dark atmosphere, and wide-space drum textures for moody late-night sessions.',
-    beatsDescription: 'A dark submenu of drifting melodies, metallic drums, and moonlit trap textures.',
+    beatsDescription: 'Dark melodies and moody bounce inside the TV player.',
     beats: [
-      { title: 'Night Vision Beat 01', path: 'beats/night-vision-01.mp3', hint: 'Opens the first Night Vision beat file.' },
-      { title: 'Night Vision Beat 02', path: 'beats/night-vision-02.mp3', hint: 'Opens the second Night Vision beat file.' },
-      { title: 'Night Vision Beat 03', path: 'beats/night-vision-03.mp3', hint: 'Opens the third Night Vision beat file.' },
-      { title: 'Night Vision Beat 04', path: 'beats/night-vision-04.mp3', hint: 'Reserve slot for another dark beat.' },
+      { title: 'Night Vision Beat 01', path: 'beats/night-vision-01.mp3', hint: 'Loads Night Vision beat 01 inside the player.' },
+      { title: 'Night Vision Beat 02', path: 'beats/night-vision-02.mp3', hint: 'Loads Night Vision beat 02 inside the player.' },
+      { title: 'Night Vision Beat 03', path: 'beats/night-vision-03.mp3', hint: 'Loads Night Vision beat 03 inside the player.' },
+      { title: 'Night Vision Beat 04', path: 'beats/night-vision-04.mp3', hint: 'Loads Night Vision beat 04 inside the player.' },
     ],
   },
   {
-    id: 'metalslugx',
     name: 'MetalSlugX',
     track: '#2',
-    theme: 'Industrial arcade rush',
-    tempo: '155 BPM',
-    mood: 'Aggressive / sharp',
-    signal: 88,
-    description: 'Industrial percussion, hard transients, and metallic movement built for futuristic bounce.',
-    beatsDescription: 'A harder submenu with machine-like grooves and aggressive percussive attacks.',
+    beatsDescription: 'Harder industrial beats with faster attack and brighter metal textures.',
     beats: [
-      { title: 'MetalSlugX Beat 01', path: 'beats/metalslugx-01.mp3', hint: 'Direct file link for MetalSlugX beat one.' },
-      { title: 'MetalSlugX Beat 02', path: 'beats/metalslugx-02.mp3', hint: 'Direct file link for MetalSlugX beat two.' },
-      { title: 'MetalSlugX Beat 03', path: 'beats/metalslugx-03.mp3', hint: 'Direct file link for MetalSlugX beat three.' },
-      { title: 'MetalSlugX Beat 04', path: 'beats/metalslugx-04.mp3', hint: 'Placeholder path for an additional beat.' },
+      { title: 'MetalSlugX Beat 01', path: 'beats/metalslugx-01.mp3', hint: 'Loads MetalSlugX beat 01 inside the player.' },
+      { title: 'MetalSlugX Beat 02', path: 'beats/metalslugx-02.mp3', hint: 'Loads MetalSlugX beat 02 inside the player.' },
+      { title: 'MetalSlugX Beat 03', path: 'beats/metalslugx-03.mp3', hint: 'Loads MetalSlugX beat 03 inside the player.' },
+      { title: 'MetalSlugX Beat 04', path: 'beats/metalslugx-04.mp3', hint: 'Loads MetalSlugX beat 04 inside the player.' },
     ],
   },
   {
-    id: 'armored-core',
     name: 'Armored Core',
     track: '#3',
-    theme: 'Mech pressure zone',
-    tempo: '148 BPM',
-    mood: 'Heavy / colossal',
-    signal: 91,
-    description: 'Massive low end, armored textures, and battle-ready rhythm sections with mechanical grit.',
-    beatsDescription: 'A heavy submenu loaded with huge hits, robotic accents, and armored energy.',
+    beatsDescription: 'Heavy battle-ready beats with huge low end and mechanical atmosphere.',
     beats: [
-      { title: 'Armored Core Beat 01', path: 'beats/armored-core-01.mp3', hint: 'Direct file link for Armored Core beat one.' },
-      { title: 'Armored Core Beat 02', path: 'beats/armored-core-02.mp3', hint: 'Direct file link for Armored Core beat two.' },
-      { title: 'Armored Core Beat 03', path: 'beats/armored-core-03.mp3', hint: 'Direct file link for Armored Core beat three.' },
-      { title: 'Armored Core Beat 04', path: 'beats/armored-core-04.mp3', hint: 'Placeholder path for an extra battle theme.' },
+      { title: 'Armored Core Beat 01', path: 'beats/armored-core-01.mp3', hint: 'Loads Armored Core beat 01 inside the player.' },
+      { title: 'Armored Core Beat 02', path: 'beats/armored-core-02.mp3', hint: 'Loads Armored Core beat 02 inside the player.' },
+      { title: 'Armored Core Beat 03', path: 'beats/armored-core-03.mp3', hint: 'Loads Armored Core beat 03 inside the player.' },
+      { title: 'Armored Core Beat 04', path: 'beats/armored-core-04.mp3', hint: 'Loads Armored Core beat 04 inside the player.' },
     ],
   },
   {
-    id: 'free-kits',
     name: 'Free Kits',
     track: '#4',
-    theme: 'Starter loot cache',
-    tempo: '130 BPM',
-    mood: 'Open / ready',
-    signal: 97,
-    description: 'A free-entry station for starter packs, easier loops, and quick-access sounds.',
-    beatsDescription: 'A utility submenu with free beat links and starter-ready paths in the repo.',
+    beatsDescription: 'Simple free beats and starter-ready sounds loaded right into the TV.',
     beats: [
-      { title: 'Free Kit Beat 01', path: 'beats/free-kit-01.mp3', hint: 'Direct file link for free beat one.' },
-      { title: 'Free Kit Beat 02', path: 'beats/free-kit-02.mp3', hint: 'Direct file link for free beat two.' },
-      { title: 'Free Kit Beat 03', path: 'beats/free-kit-03.mp3', hint: 'Direct file link for free beat three.' },
-      { title: 'Free Kit Beat 04', path: 'beats/free-kit-04.mp3', hint: 'Placeholder path for another free beat.' },
+      { title: 'Free Kit Beat 01', path: 'beats/free-kit-01.mp3', hint: 'Loads Free Kit beat 01 inside the player.' },
+      { title: 'Free Kit Beat 02', path: 'beats/free-kit-02.mp3', hint: 'Loads Free Kit beat 02 inside the player.' },
+      { title: 'Free Kit Beat 03', path: 'beats/free-kit-03.mp3', hint: 'Loads Free Kit beat 03 inside the player.' },
+      { title: 'Free Kit Beat 04', path: 'beats/free-kit-04.mp3', hint: 'Loads Free Kit beat 04 inside the player.' },
     ],
   },
 ];
+
+const fmTracks = Array.from({ length: 8 }, (_, index) => ({
+  title: `FM Track ${index + 1}`,
+  path: `fm/track${index + 1}.mp3`,
+}));
 
 const views = {
   menu: document.getElementById('screenMenu'),
   beats: document.getElementById('screenBeats'),
   signup: document.getElementById('screenSignup'),
-  lore: document.getElementById('screenLore'),
 };
+
+const monitorShell = document.getElementById('monitorShell');
+const monitorScreen = document.getElementById('monitorScreen');
+const cursorGlow = document.getElementById('cursorGlow');
 
 const kitList = document.getElementById('kitList');
 const beatsList = document.getElementById('beatsList');
 const kitButtonTemplate = document.getElementById('kitButtonTemplate');
 const beatButtonTemplate = document.getElementById('beatButtonTemplate');
 
-const previewTitle = document.getElementById('previewTitle');
-const previewDescription = document.getElementById('previewDescription');
-const previewTheme = document.getElementById('previewTheme');
-const previewTempo = document.getElementById('previewTempo');
-const previewMood = document.getElementById('previewMood');
-
 const beatsKicker = document.getElementById('beatsKicker');
 const beatsTitle = document.getElementById('beatsTitle');
 const beatsDescription = document.getElementById('beatsDescription');
+const beatNowPlaying = document.getElementById('beatNowPlaying');
 const pathDisplay = document.getElementById('pathDisplay');
-
-const trackIndicator = document.getElementById('trackIndicator');
-const signalPercent = document.getElementById('signalPercent');
-const signalBar = document.getElementById('signalBar');
-const activePackName = document.getElementById('activePackName');
-const beatCount = document.getElementById('beatCount');
-const screenName = document.getElementById('screenName');
-const currentBeatTitle = document.getElementById('currentBeatTitle');
 const currentBeatHint = document.getElementById('currentBeatHint');
-const beatBadge = document.getElementById('beatBadge');
+const beatTimeCurrent = document.getElementById('beatTimeCurrent');
+const beatTimeDuration = document.getElementById('beatTimeDuration');
+const beatProgressBar = document.getElementById('beatProgressBar');
 
 const menuToggle = document.getElementById('menuToggle');
 const prevBtn = document.getElementById('prevBtn');
@@ -108,185 +81,315 @@ const playBtn = document.getElementById('playBtn');
 const nextBtn = document.getElementById('nextBtn');
 const backToMenu = document.getElementById('backToMenu');
 const baseButton = document.getElementById('baseButton');
-const showLore = document.getElementById('showLore');
-const showMenuBottom = document.getElementById('showMenuBottom');
-const showBeatsBottom = document.getElementById('showBeatsBottom');
-const openSignupFromBeats = document.getElementById('openSignupFromBeats');
+const beatPrevBtn = document.getElementById('beatPrevBtn');
+const beatPlayBtn = document.getElementById('beatPlayBtn');
+const beatNextBtn = document.getElementById('beatNextBtn');
 
-let activeKitIndex = 0;
+const trackIndicator = document.getElementById('trackIndicator');
+const activePackName = document.getElementById('activePackName');
+const fmTrackTitle = document.getElementById('fmTrackTitle');
+const fmState = document.getElementById('fmState');
+
+const beatAudio = document.getElementById('beatAudio');
+const fmAudio = document.getElementById('fmAudio');
+
 let activeScreen = 'menu';
+let activeKitIndex = 0;
+let activeBeatIndex = 0;
+let activeFmIndex = 0;
+let beatButtons = [];
+let kitButtons = [];
 
-function setScreen(screenKey) {
-  activeScreen = screenKey;
+function formatTime(value) {
+  if (!Number.isFinite(value)) return '0:00';
+  const minutes = Math.floor(value / 60);
+  const seconds = Math.floor(value % 60);
+  return `${minutes}:${String(seconds).padStart(2, '0')}`;
+}
 
+function showScreen(name) {
+  activeScreen = name;
   Object.entries(views).forEach(([key, element]) => {
-    element.classList.toggle('screen-view--active', key === screenKey);
+    element.classList.toggle('view--active', key === name);
   });
-
-  const labels = {
-    menu: 'Menu',
-    beats: 'Beats',
-    signup: 'Stash Kit',
-    lore: 'Lore',
-  };
-
-  screenName.textContent = labels[screenKey] || screenKey;
 }
 
-function setTrackLabel(track) {
-  trackIndicator.textContent = `• Track ${track}`;
+function getActiveKit() {
+  return kits[activeKitIndex];
 }
 
-function updateSidebarMetrics(kit) {
-  signalPercent.textContent = `${kit.signal}%`;
-  signalBar.style.width = `${kit.signal}%`;
-  activePackName.textContent = kit.name;
-  beatCount.textContent = String(kit.beats.length).padStart(2, '0');
+function getActiveBeat() {
+  return getActiveKit().beats[activeBeatIndex];
 }
 
-function updatePreviewPanel(kit) {
-  previewTitle.textContent = kit.name;
-  previewDescription.textContent = kit.description;
-  previewTheme.textContent = kit.theme;
-  previewTempo.textContent = kit.tempo;
-  previewMood.textContent = kit.mood;
-  currentBeatTitle.textContent = kit.beats[0].title;
-  currentBeatHint.textContent = kit.beats[0].hint;
-  beatBadge.textContent = '01';
+function syncKitSelection() {
+  kitButtons.forEach((button, index) => {
+    button.classList.toggle('is-selected', index === activeKitIndex);
+  });
 }
 
-function renderKitButtons() {
+function syncBeatSelection() {
+  beatButtons.forEach((button, index) => {
+    button.classList.toggle('is-selected', index === activeBeatIndex);
+  });
+}
+
+function renderKits() {
   kitList.innerHTML = '';
+  kitButtons = [];
 
   kits.forEach((kit, index) => {
     const button = kitButtonTemplate.content.firstElementChild.cloneNode(true);
-    const title = button.querySelector('.menu-option__title');
-    const meta = button.querySelector('.menu-option__meta');
-
-    title.textContent = kit.name;
-    meta.textContent = `${kit.theme} // ${kit.tempo} // ${kit.track}`;
-
-    if (index === activeKitIndex) {
-      button.classList.add('is-selected');
-    }
+    button.querySelector('.kit-button__title').textContent = kit.name;
 
     button.addEventListener('mouseenter', () => {
-      updatePreviewPanel(kit);
-      updateSidebarMetrics(kit);
-      setTrackLabel(kit.track);
+      activePackName.textContent = kit.name;
     });
 
     button.addEventListener('focus', () => {
-      updatePreviewPanel(kit);
-      updateSidebarMetrics(kit);
-      setTrackLabel(kit.track);
+      activePackName.textContent = kit.name;
     });
 
     button.addEventListener('click', () => {
       activeKitIndex = index;
-      renderKitButtons();
-      renderBeatButtons();
-      updatePreviewPanel(kit);
-      updateSidebarMetrics(kit);
-      setTrackLabel(kit.track);
-      setScreen('beats');
+      activeBeatIndex = 0;
+      renderBeats();
+      loadBeat(0, false);
+      syncKitSelection();
+      showScreen('beats');
     });
 
+    kitButtons.push(button);
     kitList.appendChild(button);
   });
+
+  syncKitSelection();
 }
 
-function renderBeatButtons() {
-  const kit = kits[activeKitIndex];
+function renderBeats() {
+  const kit = getActiveKit();
   beatsList.innerHTML = '';
-  beatsKicker.textContent = `${kit.name} menu`;
+  beatButtons = [];
+  beatsKicker.textContent = `${kit.name} Menu`;
   beatsTitle.textContent = `${kit.name} Beats`;
-  beatsDescription.innerHTML = `${kit.beatsDescription} Put the real files into <code>beats/</code> and keep the paths synced in <code>script.js</code>.`;
-  pathDisplay.textContent = kit.beats[0].path;
-  currentBeatTitle.textContent = kit.beats[0].title;
-  currentBeatHint.textContent = kit.beats[0].hint;
-  beatBadge.textContent = '01';
+  beatsDescription.textContent = kit.beatsDescription;
+  activePackName.textContent = kit.name;
 
   kit.beats.forEach((beat, index) => {
-    const link = beatButtonTemplate.content.firstElementChild.cloneNode(true);
-    const name = link.querySelector('.beat-option__name');
-    const path = link.querySelector('.beat-option__path');
+    const button = beatButtonTemplate.content.firstElementChild.cloneNode(true);
+    button.querySelector('.beat-button__title').textContent = beat.title;
+    button.querySelector('.beat-button__path').textContent = beat.path;
 
-    name.textContent = `${String(index + 1).padStart(2, '0')} // ${beat.title}`;
-    path.textContent = beat.path;
-    link.href = beat.path;
-
-    link.addEventListener('mouseenter', () => {
+    button.addEventListener('mouseenter', () => {
       pathDisplay.textContent = beat.path;
-      currentBeatTitle.textContent = beat.title;
       currentBeatHint.textContent = beat.hint;
-      beatBadge.textContent = String(index + 1).padStart(2, '0');
     });
 
-    link.addEventListener('focus', () => {
+    button.addEventListener('focus', () => {
       pathDisplay.textContent = beat.path;
-      currentBeatTitle.textContent = beat.title;
       currentBeatHint.textContent = beat.hint;
-      beatBadge.textContent = String(index + 1).padStart(2, '0');
     });
 
-    beatsList.appendChild(link);
+    button.addEventListener('click', () => {
+      loadBeat(index, true);
+    });
+
+    beatButtons.push(button);
+    beatsList.appendChild(button);
   });
+
+  syncBeatSelection();
 }
 
-function syncAllPanels() {
-  const kit = kits[activeKitIndex];
-  updatePreviewPanel(kit);
-  updateSidebarMetrics(kit);
-  setTrackLabel(kit.track);
-  renderKitButtons();
-  renderBeatButtons();
+function updateBeatInfo() {
+  const beat = getActiveBeat();
+  beatNowPlaying.textContent = beat.title;
+  pathDisplay.textContent = beat.path;
+  currentBeatHint.textContent = beat.hint;
+  syncBeatSelection();
+}
+
+function loadBeat(index, autoplay = false) {
+  activeBeatIndex = index;
+  const beat = getActiveBeat();
+
+  if (beatAudio.src !== new URL(beat.path, window.location.href).href) {
+    beatAudio.src = beat.path;
+    beatAudio.load();
+  }
+
+  updateBeatInfo();
+
+  if (autoplay) {
+    beatAudio.play().then(() => {
+      beatPlayBtn.textContent = 'Pause Beat';
+    }).catch(() => {
+      beatPlayBtn.textContent = 'Play Beat';
+    });
+  }
+}
+
+function loadFmTrack(index, autoplay = false) {
+  activeFmIndex = (index + fmTracks.length) % fmTracks.length;
+  const track = fmTracks[activeFmIndex];
+
+  if (fmAudio.src !== new URL(track.path, window.location.href).href) {
+    fmAudio.src = track.path;
+    fmAudio.load();
+  }
+
+  fmTrackTitle.textContent = track.title;
+  trackIndicator.textContent = `• ${track.title}`;
+
+  if (autoplay) {
+    fmAudio.play().then(() => {
+      playBtn.textContent = '❚❚';
+      fmState.textContent = 'Playing';
+    }).catch(() => {
+      playBtn.textContent = '▷';
+      fmState.textContent = 'Idle';
+    });
+  }
+}
+
+function toggleBeatPlayback() {
+  if (!beatAudio.src) {
+    loadBeat(activeBeatIndex, true);
+    return;
+  }
+
+  if (beatAudio.paused) {
+    beatAudio.play().then(() => {
+      beatPlayBtn.textContent = 'Pause Beat';
+    }).catch(() => {
+      beatPlayBtn.textContent = 'Play Beat';
+    });
+  } else {
+    beatAudio.pause();
+  }
+}
+
+function toggleFmPlayback() {
+  if (!fmAudio.src) {
+    loadFmTrack(activeFmIndex, true);
+    return;
+  }
+
+  if (fmAudio.paused) {
+    fmAudio.play().then(() => {
+      playBtn.textContent = '❚❚';
+      fmState.textContent = 'Playing';
+    }).catch(() => {
+      playBtn.textContent = '▷';
+      fmState.textContent = 'Idle';
+    });
+  } else {
+    fmAudio.pause();
+  }
 }
 
 menuToggle.addEventListener('click', () => {
-  setScreen('menu');
-});
-
-prevBtn.addEventListener('click', () => {
-  activeKitIndex = (activeKitIndex - 1 + kits.length) % kits.length;
-  syncAllPanels();
-  setScreen('beats');
-});
-
-playBtn.addEventListener('click', () => {
-  syncAllPanels();
-  setScreen('beats');
-});
-
-nextBtn.addEventListener('click', () => {
-  activeKitIndex = (activeKitIndex + 1) % kits.length;
-  syncAllPanels();
-  setScreen('beats');
+  showScreen('menu');
 });
 
 backToMenu.addEventListener('click', () => {
-  setScreen('menu');
+  showScreen('menu');
 });
 
 baseButton.addEventListener('click', () => {
-  setScreen('signup');
+  showScreen('signup');
 });
 
-openSignupFromBeats.addEventListener('click', () => {
-  setScreen('signup');
+prevBtn.addEventListener('click', () => {
+  loadFmTrack(activeFmIndex - 1, true);
 });
 
-showLore.addEventListener('click', () => {
-  setScreen('lore');
+playBtn.addEventListener('click', () => {
+  toggleFmPlayback();
 });
 
-showMenuBottom.addEventListener('click', () => {
-  setScreen('menu');
+nextBtn.addEventListener('click', () => {
+  loadFmTrack(activeFmIndex + 1, true);
 });
 
-showBeatsBottom.addEventListener('click', () => {
-  setScreen('beats');
+beatPrevBtn.addEventListener('click', () => {
+  const count = getActiveKit().beats.length;
+  loadBeat((activeBeatIndex - 1 + count) % count, true);
 });
 
-syncAllPanels();
-setScreen(activeScreen);
+beatPlayBtn.addEventListener('click', () => {
+  toggleBeatPlayback();
+});
+
+beatNextBtn.addEventListener('click', () => {
+  const count = getActiveKit().beats.length;
+  loadBeat((activeBeatIndex + 1) % count, true);
+});
+
+beatAudio.addEventListener('play', () => {
+  beatPlayBtn.textContent = 'Pause Beat';
+  monitorShell.classList.add('is-playing');
+});
+
+beatAudio.addEventListener('pause', () => {
+  beatPlayBtn.textContent = 'Play Beat';
+  monitorShell.classList.remove('is-playing');
+});
+
+beatAudio.addEventListener('timeupdate', () => {
+  const duration = beatAudio.duration || 0;
+  const current = beatAudio.currentTime || 0;
+  const progress = duration ? (current / duration) * 100 : 0;
+  beatProgressBar.style.width = `${progress}%`;
+  beatTimeCurrent.textContent = formatTime(current);
+  beatTimeDuration.textContent = formatTime(duration);
+});
+
+beatAudio.addEventListener('loadedmetadata', () => {
+  beatTimeDuration.textContent = formatTime(beatAudio.duration);
+});
+
+beatAudio.addEventListener('ended', () => {
+  const count = getActiveKit().beats.length;
+  loadBeat((activeBeatIndex + 1) % count, true);
+});
+
+fmAudio.addEventListener('play', () => {
+  playBtn.textContent = '❚❚';
+  fmState.textContent = 'Playing';
+});
+
+fmAudio.addEventListener('pause', () => {
+  playBtn.textContent = '▷';
+  fmState.textContent = 'Paused';
+});
+
+fmAudio.addEventListener('ended', () => {
+  loadFmTrack(activeFmIndex + 1, true);
+});
+
+monitorScreen.addEventListener('mousemove', (event) => {
+  const rect = monitorScreen.getBoundingClientRect();
+  const x = (event.clientX - rect.left) / rect.width;
+  const y = (event.clientY - rect.top) / rect.height;
+  const rotateY = (x - 0.5) * 8;
+  const rotateX = (0.5 - y) * 8;
+
+  monitorShell.style.setProperty('--tilt-x', `${rotateX}deg`);
+  monitorShell.style.setProperty('--tilt-y', `${rotateY}deg`);
+  cursorGlow.style.setProperty('--cursor-x', `${x * 100}%`);
+  cursorGlow.style.setProperty('--cursor-y', `${y * 100}%`);
+});
+
+monitorScreen.addEventListener('mouseleave', () => {
+  monitorShell.style.setProperty('--tilt-x', '0deg');
+  monitorShell.style.setProperty('--tilt-y', '0deg');
+  cursorGlow.style.setProperty('--cursor-x', '50%');
+  cursorGlow.style.setProperty('--cursor-y', '50%');
+});
+
+renderKits();
+renderBeats();
+loadBeat(0, false);
+loadFmTrack(0, false);
+showScreen(activeScreen);
