@@ -3,136 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drums —  dark Sample Kits</title>
+    <title>DRUMS FM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">Sound design lab</p>
-          <a class="brand" href="#home">DRUMS</a>
+    <div class="noise"></div>
+    <div class="page-bg"></div>
+
+    <header class="topbar">
+      <button class="menu-toggle ui-button" id="menuToggle" type="button">▸▸ Menu</button>
+      <div class="station-meta">
+        <span class="disc"></span>
+        <span>Cxdy FM</span>
+      </div>
+      <div class="transport">
+        <button class="transport-btn" id="prevBtn" type="button" aria-label="Previous">◁</button>
+        <button class="transport-btn" id="playBtn" type="button" aria-label="Play">▷</button>
+        <button class="transport-btn" id="nextBtn" type="button" aria-label="Next">▷|</button>
+      </div>
+      <div class="track-indicator" id="trackIndicator">• Track #1</div>
+      <div class="corner-logo">DRMS</div>
+    </header>
+
+    <main class="stage">
+      <section class="tv-shell">
+        <div class="tv-frame">
+          <div class="tv-screen">
+            <div class="scanlines"></div>
+
+            <div class="screen screen-menu active" id="screenMenu">
+              <p class="screen-label">Menu</p>
+              <div class="menu-list" id="kitList"></div>
+            </div>
+
+            <div class="screen screen-beats" id="screenBeats">
+              <p class="screen-label" id="beatsLabel">Beats</p>
+              <div class="beats-panel">
+                <button class="back-link" id="backToMenu" type="button">← Back to menu</button>
+                <div class="beats-list" id="beatsList"></div>
+              </div>
+            </div>
+
+            <div class="screen screen-signup" id="screenSignup">
+              <p class="screen-label">Free stash kit</p>
+              <div class="signup-copy">
+                <h1>Grab My NEW 2025 Free Stash Kit</h1>
+                <form class="signup-form">
+                  <input type="text" placeholder="First Name" aria-label="First Name" />
+                  <input type="email" placeholder="Email Address" aria-label="Email Address" />
+                  <button type="submit">Get Sounds</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <nav class="nav">
-          <a href="#kits">Kits</a>
-          <a href="#radio">Radio</a>
-          <a href="#about">About</a>
-          <a class="nav-cta" href="#signup">Get drops</a>
-        </nav>
-      </header>
 
-      <main id="home">
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">Inspired by cxdykits.com</p>
-            <h1>Dark, futuristic drum kits for producers who want instant atmosphere.</h1>
-            <p class="hero-text">
-              Explore cinematic textures, hard-hitting drums, and neon-soaked sample packs in a bold one-page experience.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#kits">Browse kits</a>
-              <a class="button button-secondary" href="#radio">Listen live</a>
-            </div>
-            <ul class="hero-stats">
-              <li><strong>12K+</strong><span>producers reached</span></li>
-              <li><strong>48</strong><span>signature textures</span></li>
-              <li><strong>100%</strong><span>royalty free</span></li>
-            </ul>
-          </div>
+        <button class="base-button" id="baseButton" type="button">Open free stash kit</button>
+      </section>
+    </main>
 
-          <aside class="player-card" id="radio">
-            <div class="player-card__glow"></div>
-            <p class="player-label">Cxdy-style radio</p>
-            <h2>CXDY FM / Night Session</h2>
-            <p class="player-description">
-              A moody broadcast of ambient loops, punchy snares, and metallic melodies curated for late-night sessions.
-            </p>
-            <div class="waveform" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <div class="track-meta">
-              <span>Track 01 · Night Vision</span>
-              <span>01:34</span>
-            </div>
-            <button class="button button-primary button-block" id="playToggle" type="button">Play preview</button>
-          </aside>
-        </section>
+    <template id="kitButtonTemplate">
+      <button class="menu-item" type="button"></button>
+    </template>
 
-        <section class="featured" id="kits">
-          <div class="section-heading">
-            <p class="eyebrow">Pick one</p>
-            <h2>Featured kits</h2>
-          </div>
-          <div class="kit-grid">
-            <article class="kit-card accent-purple">
-              <p class="kit-index">01</p>
-              <h3>Night Vision</h3>
-              <p>Shadowy pads, glassy percussion, and wide stereo movement for moody trap production.</p>
-              <div class="kit-footer"><span>38 sounds</span><a href="#signup">Preview</a></div>
-            </article>
-            <article class="kit-card accent-green">
-              <p class="kit-index">02</p>
-              <h3>MetalSlugX</h3>
-              <p>Industrial knocks, gritty one-shots, and aggressive percussion for futuristic bounce.</p>
-              <div class="kit-footer"><span>52 sounds</span><a href="#signup">Preview</a></div>
-            </article>
-            <article class="kit-card accent-blue">
-              <p class="kit-index">03</p>
-              <h3>Armored Core</h3>
-              <p>Heavy low-end, mechanical textures, and distorted transitions built for impact.</p>
-              <div class="kit-footer"><span>44 sounds</span><a href="#signup">Preview</a></div>
-            </article>
-            <article class="kit-card accent-pink">
-              <p class="kit-index">04</p>
-              <h3>Free Kits</h3>
-              <p>Starter-ready loops and drums that let new artists plug straight into the vibe.</p>
-              <div class="kit-footer"><span>Always updated</span><a href="#signup">Download</a></div>
-            </article>
-          </div>
-        </section>
-
-        <section class="split-section" id="about">
-          <div>
-            <p class="eyebrow">Built for creative speed</p>
-            <h2>Everything producers loved about the reference, reimagined as a clean custom HTML landing page.</h2>
-          </div>
-          <div class="feature-list">
-            <article>
-              <h3>Immersive visual tone</h3>
-              <p>Dark gradients, neon borders, and glassmorphism panels echo the source site's underground energy.</p>
-            </article>
-            <article>
-              <h3>Clearer conversion path</h3>
-              <p>Focused CTAs, simple navigation, and a strong email signup section make the page easier to use.</p>
-            </article>
-            <article>
-              <h3>Pure HTML, CSS, JS</h3>
-              <p>No framework required, so you can host it anywhere or extend it with your own storefront later.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="signup" id="signup">
-          <div>
-            <p class="eyebrow">Get the next drop</p>
-            <h2>Join the list for free kits, release alerts, and exclusive producer tools.</h2>
-          </div>
-          <form class="signup-form">
-            <label>
-              <span>Email address</span>
-              <input type="email" placeholder="producer@email.com" />
-            </label>
-            <button class="button button-primary" type="submit">Notify me</button>
-          </form>
-        </section>
-      </main>
-    </div>
+    <template id="beatButtonTemplate">
+      <a class="beat-link" target="_blank" rel="noopener noreferrer"></a>
+    </template>
 
     <script src="script.js"></script>
   </body>
