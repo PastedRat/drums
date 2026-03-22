@@ -741,8 +741,8 @@ body.fm-active .television__screen {
   grid-template-columns: repeat(18, 1fr);
   gap: 6px;
   align-items: end;
-  min-height: 76px;
-  margin: 18px 0 10px;
+  min-height: 58px;
+  margin: 8px 0 14px;
   padding: 12px;
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(0,0,0,0.22);
