@@ -3,6 +3,7 @@ const kits = [
     name: 'Night Vision',
     track: '#1',
     beatsDescription: 'Dark melodies and moody bounce inside the TV player.',
+    buyLabel: 'Buy Night Vision',
     beats: [
       { title: 'Night Vision Beat 01', path: 'beats/night-vision-01.mp3', hint: 'Loads Night Vision beat 01 inside the player.' },
       { title: 'Night Vision Beat 02', path: 'beats/night-vision-02.mp3', hint: 'Loads Night Vision beat 02 inside the player.' },
@@ -14,6 +15,7 @@ const kits = [
     name: 'MetalSlugX',
     track: '#2',
     beatsDescription: 'Harder industrial beats with faster attack and brighter metal textures.',
+    buyLabel: 'Buy MetalSlugX',
     beats: [
       { title: 'MetalSlugX Beat 01', path: 'beats/metalslugx-01.mp3', hint: 'Loads MetalSlugX beat 01 inside the player.' },
       { title: 'MetalSlugX Beat 02', path: 'beats/metalslugx-02.mp3', hint: 'Loads MetalSlugX beat 02 inside the player.' },
@@ -25,6 +27,7 @@ const kits = [
     name: 'Armored Core',
     track: '#3',
     beatsDescription: 'Heavy battle-ready beats with huge low end and mechanical atmosphere.',
+    buyLabel: 'Buy Armored Core',
     beats: [
       { title: 'Armored Core Beat 01', path: 'beats/armored-core-01.mp3', hint: 'Loads Armored Core beat 01 inside the player.' },
       { title: 'Armored Core Beat 02', path: 'beats/armored-core-02.mp3', hint: 'Loads Armored Core beat 02 inside the player.' },
@@ -36,6 +39,7 @@ const kits = [
     name: 'Free Kits',
     track: '#4',
     beatsDescription: 'Simple free beats and starter-ready sounds loaded right into the TV.',
+    buyLabel: 'Get Free Kits',
     beats: [
       { title: 'Free Kit Beat 01', path: 'beats/free-kit-01.mp3', hint: 'Loads Free Kit beat 01 inside the player.' },
       { title: 'Free Kit Beat 02', path: 'beats/free-kit-02.mp3', hint: 'Loads Free Kit beat 02 inside the player.' },
@@ -85,6 +89,9 @@ const baseButton = document.getElementById('baseButton');
 const beatPrevBtn = document.getElementById('beatPrevBtn');
 const beatPlayBtn = document.getElementById('beatPlayBtn');
 const beatNextBtn = document.getElementById('beatNextBtn');
+const beatInfoBtn = document.getElementById('beatInfoBtn');
+const beatBuyBtn = document.getElementById('beatBuyBtn');
+const beatMenuBtn = document.getElementById('beatMenuBtn');
 
 const trackIndicator = document.getElementById('trackIndicator');
 const activePackName = document.getElementById('activePackName');
@@ -94,6 +101,7 @@ const fmState = document.getElementById('fmState');
 const beatAudio = document.getElementById('beatAudio');
 const fmAudio = document.getElementById('fmAudio');
 const backgroundVideo = document.getElementById('backgroundVideo');
+const tvBoot = document.getElementById('tvBoot');
 fmAudio.volume = 0.9;
 
 let activeScreen = 'menu';
@@ -166,6 +174,17 @@ function stopSpectrum() {
   });
 }
 
+
+
+function playBootAnimation() {
+  document.body.classList.add('is-booting');
+  window.setTimeout(() => {
+    document.body.classList.remove('is-booting');
+    if (tvBoot) {
+      tvBoot.style.opacity = '0';
+    }
+  }, 1400);
+}
 
 function setupBackgroundVideo() {
   if (!backgroundVideo) return;
@@ -259,6 +278,7 @@ function renderBeats() {
   beatsKicker.textContent = `${kit.name} Menu`;
   beatsTitle.textContent = `${kit.name} Beats`;
   beatsDescription.textContent = kit.beatsDescription;
+  beatBuyBtn.textContent = kit.buyLabel;
   activePackName.textContent = kit.name;
 
   kit.beats.forEach((beat, index) => {
@@ -395,6 +415,20 @@ baseButton.addEventListener('click', () => {
   showScreen('signup');
 });
 
+beatInfoBtn.addEventListener('click', () => {
+  const kit = getActiveKit();
+  const beat = getPreviewBeat();
+  beatsDescription.textContent = `${kit.beatsDescription} ${beat.hint}`;
+});
+
+beatBuyBtn.addEventListener('click', () => {
+  showScreen('signup');
+});
+
+beatMenuBtn.addEventListener('click', () => {
+  showScreen('menu');
+});
+
 prevBtn.addEventListener('click', () => {
   loadFmTrack(activeFmIndex - 1, true);
 });
@@ -500,6 +534,7 @@ monitorScreen.addEventListener('mouseleave', () => {
 });
 
 setupSpectrum();
+playBootAnimation();
 renderKits();
 renderBeats();
 loadBeat(0, false);
