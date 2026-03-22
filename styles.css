@@ -124,8 +124,7 @@ button,
   height: 26vh;
 }
 
-.scene__fire,
-.scene__crate {
+.scene__fire {
   position: absolute;
   display: block;
 }
@@ -141,16 +140,6 @@ button,
   animation: flicker 1.8s ease-in-out infinite;
 }
 
-.scene__crate {
-  bottom: 4vh;
-  width: 72px;
-  height: 60px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #d9d5c7, #8d877b);
-}
-
-.scene__crate--left { left: 10vw; }
-.scene__crate--right { right: 10vw; }
 
 .scene__noise {
   opacity: 0.08;
@@ -771,4 +760,90 @@ body.video-on .scene__objects {
 
 body.video-on .scene__video {
   opacity: 1;
+}
+
+
+.player-meta-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 16px;
+}
+
+.sub-button--buy {
+  background: linear-gradient(180deg, #ffb55f, #d96b2a);
+  border-color: rgba(255, 181, 95, 0.8);
+  color: #1d0f05;
+}
+
+.sub-button--buy:hover,
+.sub-button--buy:focus-visible {
+  background: linear-gradient(180deg, #ffd28d, #f08943);
+  color: #170903;
+}
+
+
+.television__boot {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.95) 0 2%, rgba(255,255,255,0.65) 2%, rgba(255,255,255,0.08) 12%, transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.04));
+}
+
+body.is-booting .television__boot {
+  animation: tv-boot 1.15s ease-out forwards;
+}
+
+body.is-booting .television {
+  animation: tv-rise 0.95s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+body.is-booting .topbar > * {
+  animation: topbar-drop 0.8s cubic-bezier(.2,.8,.2,1) forwards;
+  opacity: 0;
+}
+
+body.is-booting .topbar > *:nth-child(1) { animation-delay: 0.08s; }
+body.is-booting .topbar > *:nth-child(2) { animation-delay: 0.14s; }
+body.is-booting .topbar > *:nth-child(3) { animation-delay: 0.2s; }
+
+.beat-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.beat-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.beat-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 180, 84, 0.35);
+  border-radius: 999px;
+}
+
+.beat-list::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.04);
+}
+
+@keyframes tv-boot {
+  0% { opacity: 0; transform: scaleY(0.02) scaleX(0.14); }
+  18% { opacity: 1; transform: scaleY(0.02) scaleX(0.34); }
+  45% { opacity: 1; transform: scaleY(1) scaleX(0.02); }
+  70% { opacity: 0.85; transform: scaleY(1) scaleX(1); }
+  100% { opacity: 0; transform: scaleY(1) scaleX(1); }
+}
+
+@keyframes tv-rise {
+  0% { opacity: 0; transform: perspective(1500px) translateY(28px) scale(0.98) rotateX(8deg); }
+  100% { opacity: 1; transform: perspective(1500px) translateY(0) scale(1) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)); }
+}
+
+@keyframes topbar-drop {
+  0% { opacity: 0; transform: translateY(-18px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
