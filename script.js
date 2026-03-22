@@ -100,6 +100,7 @@ let activeScreen = 'menu';
 let activeKitIndex = 0;
 let activeBeatIndex = 0;
 let activeFmIndex = 0;
+let previewBeatIndex = 0;
 let beatButtons = [];
 let kitButtons = [];
 
@@ -138,7 +139,7 @@ function updateSpectrum() {
   const bars = beatSpectrum.children;
   for (let index = 0; index < bars.length; index += 1) {
     const value = analyserData[index % analyserData.length] || 0;
-    const scaled = Math.max(14, Math.round((value / 255) * 74));
+    const scaled = Math.max(10, Math.round((value / 255) * 56));
     bars[index].style.height = `${scaled}px`;
   }
 
@@ -161,7 +162,7 @@ function stopSpectrum() {
   document.body.classList.remove('beat-active');
   if (!beatSpectrum) return;
   Array.from(beatSpectrum.children).forEach((bar, index) => {
-    bar.style.height = `${14 + (index % 4) * 4}px`;
+    bar.style.height = `${10 + (index % 4) * 4}px`;
   });
 }
 
@@ -174,6 +175,7 @@ function setupBackgroundVideo() {
 
   backgroundVideo.muted = true;
   backgroundVideo.defaultMuted = true;
+  backgroundVideo.setAttribute('src', 'video.mp4');
   backgroundVideo.play().then(markPlaying).catch(markFallback);
   backgroundVideo.addEventListener('playing', markPlaying);
   backgroundVideo.addEventListener('error', markFallback);
@@ -199,6 +201,10 @@ function getActiveKit() {
 
 function getActiveBeat() {
   return getActiveKit().beats[activeBeatIndex];
+}
+
+function getPreviewBeat() {
+  return getActiveKit().beats[previewBeatIndex];
 }
 
 function syncKitSelection() {
@@ -232,6 +238,7 @@ function renderKits() {
     button.addEventListener('click', () => {
       activeKitIndex = index;
       activeBeatIndex = 0;
+      previewBeatIndex = 0;
       renderBeats();
       loadBeat(0, false);
       syncKitSelection();
@@ -260,11 +267,13 @@ function renderBeats() {
     button.querySelector('.beat-button__path').textContent = beat.path;
 
     button.addEventListener('mouseenter', () => {
+      previewBeatIndex = index;
       pathDisplay.textContent = beat.path;
       currentBeatHint.textContent = beat.hint;
     });
 
     button.addEventListener('focus', () => {
+      previewBeatIndex = index;
       pathDisplay.textContent = beat.path;
       currentBeatHint.textContent = beat.hint;
     });
@@ -290,6 +299,7 @@ function updateBeatInfo() {
 
 function loadBeat(index, autoplay = false) {
   activeBeatIndex = index;
+  previewBeatIndex = index;
   const beat = getActiveBeat();
 
   if (beatAudio.src !== new URL(beat.path, window.location.href).href) {
@@ -333,6 +343,11 @@ function loadFmTrack(index, autoplay = false) {
 }
 
 function toggleBeatPlayback() {
+  if (previewBeatIndex !== activeBeatIndex) {
+    loadBeat(previewBeatIndex, true);
+    return;
+  }
+
   if (!beatAudio.src) {
     loadBeat(activeBeatIndex, true);
     return;
