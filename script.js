@@ -74,6 +74,7 @@ const currentBeatHint = document.getElementById('currentBeatHint');
 const beatTimeCurrent = document.getElementById('beatTimeCurrent');
 const beatTimeDuration = document.getElementById('beatTimeDuration');
 const beatProgressBar = document.getElementById('beatProgressBar');
+const beatSpectrum = document.getElementById('beatSpectrum');
 
 const menuToggle = document.getElementById('menuToggle');
 const prevBtn = document.getElementById('prevBtn');
@@ -101,6 +102,68 @@ let activeBeatIndex = 0;
 let activeFmIndex = 0;
 let beatButtons = [];
 let kitButtons = [];
+
+let audioContext;
+let analyser;
+let analyserData;
+let beatSourceNode;
+let spectrumFrame;
+
+function setupSpectrum() {
+  if (!beatSpectrum) return;
+
+  beatSpectrum.innerHTML = '';
+  for (let index = 0; index < 18; index += 1) {
+    const bar = document.createElement('span');
+    beatSpectrum.appendChild(bar);
+  }
+}
+
+function connectBeatAudioAnalyzer() {
+  if (beatSourceNode || !window.AudioContext) return;
+
+  audioContext = new window.AudioContext();
+  analyser = audioContext.createAnalyser();
+  analyser.fftSize = 64;
+  analyserData = new Uint8Array(analyser.frequencyBinCount);
+  beatSourceNode = audioContext.createMediaElementSource(beatAudio);
+  beatSourceNode.connect(analyser);
+  analyser.connect(audioContext.destination);
+}
+
+function updateSpectrum() {
+  if (!analyser || !beatSpectrum) return;
+
+  analyser.getByteFrequencyData(analyserData);
+  const bars = beatSpectrum.children;
+  for (let index = 0; index < bars.length; index += 1) {
+    const value = analyserData[index % analyserData.length] || 0;
+    const scaled = Math.max(14, Math.round((value / 255) * 74));
+    bars[index].style.height = `${scaled}px`;
+  }
+
+  spectrumFrame = requestAnimationFrame(updateSpectrum);
+}
+
+function startSpectrum() {
+  if (!beatSpectrum) return;
+  connectBeatAudioAnalyzer();
+  if (audioContext && audioContext.state === 'suspended') {
+    audioContext.resume();
+  }
+  cancelAnimationFrame(spectrumFrame);
+  document.body.classList.add('beat-active');
+  updateSpectrum();
+}
+
+function stopSpectrum() {
+  cancelAnimationFrame(spectrumFrame);
+  document.body.classList.remove('beat-active');
+  if (!beatSpectrum) return;
+  Array.from(beatSpectrum.children).forEach((bar, index) => {
+    bar.style.height = `${14 + (index % 4) * 4}px`;
+  });
+}
 
 
 function setupBackgroundVideo() {
@@ -346,11 +409,13 @@ beatNextBtn.addEventListener('click', () => {
 beatAudio.addEventListener('play', () => {
   beatPlayBtn.textContent = 'Pause Beat';
   monitorShell.classList.add('is-playing');
+  startSpectrum();
 });
 
 beatAudio.addEventListener('pause', () => {
   beatPlayBtn.textContent = 'Play Beat';
   monitorShell.classList.remove('is-playing');
+  stopSpectrum();
 });
 
 beatAudio.addEventListener('timeupdate', () => {
@@ -419,6 +484,7 @@ monitorScreen.addEventListener('mouseleave', () => {
   cursorGlow.style.setProperty('--cursor-y', '50%');
 });
 
+setupSpectrum();
 renderKits();
 renderBeats();
 loadBeat(0, false);
