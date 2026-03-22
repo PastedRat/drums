@@ -783,19 +783,49 @@ body.video-on .scene__video {
 }
 
 
-.television__boot {
-  position: absolute;
+
+.site-boot {
+  position: fixed;
   inset: 0;
-  z-index: 4;
+  z-index: 20;
   pointer-events: none;
   opacity: 0;
-  background:
-    radial-gradient(circle at center, rgba(255,255,255,0.95) 0 2%, rgba(255,255,255,0.65) 2%, rgba(255,255,255,0.08) 12%, transparent 28%),
-    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.04));
+  background: #000;
 }
 
-body.is-booting .television__boot {
-  animation: tv-boot 1.15s ease-out forwards;
+.site-boot::before,
+.site-boot::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.site-boot::before {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 0 28px rgba(255,255,255,0.9);
+}
+
+.site-boot::after {
+  width: 0;
+  height: 0;
+  box-shadow: 0 0 0 0 rgba(255,255,255,0.95), 0 0 0 0 rgba(255,255,255,0.95);
+}
+
+body.is-booting .site-boot {
+  animation: site-boot-fade 1.2s ease-out forwards;
+}
+
+body.is-booting .site-boot::before {
+  animation: site-boot-star 0.9s ease-out forwards;
+}
+
+body.is-booting .site-boot::after {
+  animation: site-boot-rays 0.95s ease-out forwards;
 }
 
 body.is-booting .television {
@@ -811,31 +841,24 @@ body.is-booting .topbar > *:nth-child(1) { animation-delay: 0.08s; }
 body.is-booting .topbar > *:nth-child(2) { animation-delay: 0.14s; }
 body.is-booting .topbar > *:nth-child(3) { animation-delay: 0.2s; }
 
-.beat-list {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 6px;
+@keyframes site-boot-fade {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-.beat-list::-webkit-scrollbar {
-  width: 10px;
+@keyframes site-boot-star {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+  18% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  45% { opacity: 1; transform: translate(-50%, -50%) scale(8); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(18); }
 }
 
-.beat-list::-webkit-scrollbar-thumb {
-  background: rgba(255, 180, 84, 0.35);
-  border-radius: 999px;
-}
-
-.beat-list::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.04);
-}
-
-@keyframes tv-boot {
-  0% { opacity: 0; transform: scaleY(0.02) scaleX(0.14); }
-  18% { opacity: 1; transform: scaleY(0.02) scaleX(0.34); }
-  45% { opacity: 1; transform: scaleY(1) scaleX(0.02); }
-  70% { opacity: 0.85; transform: scaleY(1) scaleX(1); }
-  100% { opacity: 0; transform: scaleY(1) scaleX(1); }
+@keyframes site-boot-rays {
+  0% { opacity: 0; box-shadow: 0 0 0 0 rgba(255,255,255,0.95), 0 0 0 0 rgba(255,255,255,0.95); }
+  25% { opacity: 1; box-shadow: 0 -40px 0 1px rgba(255,255,255,0.95), 0 40px 0 1px rgba(255,255,255,0.95); }
+  55% { opacity: 1; box-shadow: -80px 0 0 1px rgba(255,255,255,0.8), 80px 0 0 1px rgba(255,255,255,0.8); }
+  100% { opacity: 0; box-shadow: -160px 0 0 2px rgba(255,255,255,0), 160px 0 0 2px rgba(255,255,255,0); }
 }
 
 @keyframes tv-rise {
