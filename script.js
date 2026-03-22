@@ -101,7 +101,7 @@ const fmState = document.getElementById('fmState');
 const beatAudio = document.getElementById('beatAudio');
 const fmAudio = document.getElementById('fmAudio');
 const backgroundVideo = document.getElementById('backgroundVideo');
-const tvBoot = document.getElementById('tvBoot');
+const siteBoot = document.getElementById('siteBoot');
 fmAudio.volume = 0.9;
 
 let activeScreen = 'menu';
@@ -180,8 +180,8 @@ function playBootAnimation() {
   document.body.classList.add('is-booting');
   window.setTimeout(() => {
     document.body.classList.remove('is-booting');
-    if (tvBoot) {
-      tvBoot.style.opacity = '0';
+    if (siteBoot) {
+      siteBoot.style.opacity = '0';
     }
   }, 1400);
 }
