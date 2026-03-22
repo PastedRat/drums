@@ -79,15 +79,15 @@ button,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(8px) brightness(0.34) saturate(0.72);
-  transform: scale(1.08);
-  opacity: 0.82;
+  filter: blur(5px) brightness(0.5) saturate(0.88);
+  transform: scale(1.04);
+  opacity: 0.96;
 }
 
 .scene__overlay {
   background:
-    radial-gradient(circle at center, transparent 30%, rgba(0, 0, 0, 0.48) 68%, rgba(0, 0, 0, 0.75) 100%),
-    linear-gradient(180deg, rgba(7, 8, 11, 0.28), rgba(5, 5, 7, 0.72));
+    radial-gradient(circle at center, transparent 18%, rgba(0, 0, 0, 0.26) 66%, rgba(0, 0, 0, 0.48) 100%),
+    linear-gradient(180deg, rgba(7, 8, 11, 0.12), rgba(5, 5, 7, 0.34));
 }
 
 .scene__stars {
@@ -759,4 +759,16 @@ body.fm-active .television__screen {
 
 body.beat-active .spectrum span {
   box-shadow: 0 0 12px rgba(255, 180, 84, 0.24);
+}
+
+
+body.video-on .scene__stars,
+body.video-on .scene__fog,
+body.video-on .scene__mountains,
+body.video-on .scene__objects {
+  opacity: 0.22;
+}
+
+body.video-on .scene__video {
+  opacity: 1;
 }
