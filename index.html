@@ -13,7 +13,7 @@
   <body>
     <div class="scene" aria-hidden="true">
       <video class="scene__video" id="backgroundVideo" autoplay muted loop playsinline>
-        <source src="video.mp3" type="video/mp4" />
+        <source src="video.mp4" type="video/mp4" />
       </video>
       <div class="scene__overlay"></div>
       <div class="scene__stars"></div>
@@ -22,8 +22,6 @@
       <div class="scene__mountains scene__mountains--front"></div>
       <div class="scene__objects">
         <span class="scene__fire"></span>
-        <span class="scene__crate scene__crate--left"></span>
-        <span class="scene__crate scene__crate--right"></span>
       </div>
       <div class="scene__noise"></div>
     </div>
@@ -38,7 +36,7 @@
         <div class="topbar__center">
           <div class="station-title">
             <span class="station-title__disc"></span>
-            <span>FELIX! FM</span>
+            <span>Cxdy FM</span>
           </div>
 
           <div class="fm-controls">
@@ -58,6 +56,7 @@
           <div class="television__frame">
             <div class="television__inner">
               <div class="television__screen" id="monitorScreen">
+                <div class="television__boot" id="tvBoot" aria-hidden="true"></div>
                 <div class="television__scanlines"></div>
                 <div class="television__glare"></div>
                 <div class="television__rgb"></div>
@@ -92,12 +91,18 @@
                       <code class="player-card__path" id="pathDisplay">beats/night-vision-01.mp3</code>
                       <p class="player-card__hint" id="currentBeatHint">Choose a beat, then press play.</p>
 
-                      <div class="spectrum" id="beatSpectrum" aria-hidden="true"></div>
-
                       <div class="player-actions">
                         <button class="player-button player-button--ghost" id="beatPrevBtn" type="button">|◁</button>
                         <button class="player-button player-button--play" id="beatPlayBtn" type="button">Play Beat</button>
                         <button class="player-button player-button--ghost" id="beatNextBtn" type="button">▷|</button>
+                      </div>
+
+                      <div class="spectrum" id="beatSpectrum" aria-hidden="true"></div>
+
+                      <div class="player-meta-actions">
+                        <button class="sub-button" id="beatInfoBtn" type="button">Info</button>
+                        <button class="sub-button sub-button--buy" id="beatBuyBtn" type="button">Buy</button>
+                        <button class="sub-button" id="beatMenuBtn" type="button">Menu</button>
                       </div>
 
                       <div class="player-progress">
